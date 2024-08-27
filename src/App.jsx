@@ -42,12 +42,13 @@ function App() {
   }
 
   return (
-    <div className="flex flex-row">
-      <Header />
-      <div className="flex flex-col gap-20 my-10">
+    <div className="flex flex-col">
+      <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
+      </Header>
+      <div className="flex flex-col gap-20 my-10">
         {gamesData && (
-          <div className="grid grid-cols-3 gap-8 ml-96 mr-36">
+          <div className="grid grid-cols-3 gap-8 mx-40 my-20 ">
             {gamesData.map(
               (game) =>
                 game.background_image && (
@@ -65,6 +66,7 @@ function App() {
         )}
       </div>
     </div>
+    
     
   );
 }
