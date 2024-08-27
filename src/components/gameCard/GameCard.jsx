@@ -1,10 +1,11 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import GenreTag from "./GenreTag";
 import PlatformIcon from "./PlatformIcon";
 
-function GameCard({ gName, gBackGround, gGenres, gPlatforms, gStores }) {
+function GameCard({ gId, gName, gBackGround, gGenres, gPlatforms, gStores }) {
   return (
-    <div className="bg-darkColdBlue-500 rounded-xl cursor-pointer">
+    <NavLink to={`${gId}`} className="bg-darkColdBlue-500 rounded-xl cursor-pointer">
       {gBackGround && (
         <div
           className="w-full h-48 bg-cover bg-center rounded-t-md"
@@ -24,7 +25,7 @@ function GameCard({ gName, gBackGround, gGenres, gPlatforms, gStores }) {
           ))}
         </div>
       </div>
-    </div>
+    </NavLink>
   );
 }
 

@@ -32,3 +32,10 @@ export function fetchDataSearch(textInput) {
   ).then((response) => response.json());
   return data;
 }
+
+export function fetchGameData(id) {
+  const data = fetch(
+    `${baseUrl}games/${id}?key=${apiKey}`
+  ).then((response) => response.json());
+  return data;
+}

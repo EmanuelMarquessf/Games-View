@@ -1,29 +1,19 @@
-import { useEffect, useState } from "react";
 import "./App.css";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Home from './pages/Home'
+import GamePage from './pages/GamePage'
+import Footer from "./components/Footer";
+
 import { fetchData, fetchDataSearch, fetchData30Day } from "./services/rawg.service";
 import GameCard from "./components/gameCard/GameCard";
 import Search from "./components/Search";
 import Header from "./components/Header";
 
 function App() {
-  const [gamesData, setGamesData] = useState([]);
   const [searchData, setSearchData] = useState([]);
-
-  const [searchInput, setSearchInput] = useState('')
-
-  fetchData30Day();
-
-  useEffect(() => {
-    async function fetch() {
-      const data = await fetchData();
-      setGamesData(data.results);
-    }
-    fetch();
-  }, []);
-
-  useEffect(() => {
-    console.log(gamesData);
-  }, [gamesData]);
+  const [searchInput, setSearchInput] = useState('');
 
   function searchChange(event) {
     const inputValue = event.target.value;
@@ -42,32 +32,16 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col">
+    <BrowserRouter>
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <div className="flex flex-col gap-20 my-10">
-        {gamesData && (
-          <div className="grid grid-cols-3 gap-8 mx-40 my-20 ">
-            {gamesData.map(
-              (game) =>
-                game.background_image && (
-                  <GameCard
-                    key={game.id}
-                    gName={game.name}
-                    gBackGround={game.background_image}
-                    gGenres={game.genres}
-                    gPlatforms={game.parent_platforms}
-                    gStores={game.stores}
-                  />
-                )
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-    
-    
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path=":id" element={<GamePage />} />
+      </Routes>
+      <Footer></Footer>
+    </BrowserRouter>
   );
 }
 
