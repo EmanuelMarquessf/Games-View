@@ -36,10 +36,12 @@ function App() {
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path=":id" element={<GamePage />} />
-      </Routes>
+      <div className="px-56 py-32">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path=":id" element={<GamePage />} />
+        </Routes>
+      </div>
       <Footer></Footer>
     </BrowserRouter>
   );

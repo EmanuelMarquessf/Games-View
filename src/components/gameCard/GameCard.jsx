@@ -18,7 +18,7 @@ function GameCard({ gId, gName, gBackGround, gGenres, gPlatforms, gStores }) {
             <PlatformIcon key={index} platform={platform}/>
           ))}
         </div>
-        <span className="font-roboto font-medium text-xl">{gName}</span>
+        <span className="font-roboto font-medium text-xl text-nowrap overflow-hidden overflow-ellipsis">{gName}</span>
         <div className="flex gap-1">
           {gGenres.map((genre, index) => (
             <GenreTag key={index} genre={genre.name} />

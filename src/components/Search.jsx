@@ -1,5 +1,6 @@
 import { SearchIcon } from 'lucide-react';
 import {useEffect} from 'react'
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -7,6 +8,11 @@ function Search({searchInput, setSearchInput, onChange, searchData, setSearchDat
   useEffect(() => {
     console.log(searchData);
   }, [searchData]);
+
+  function SearchInputReset(){
+    setSearchInput(''); 
+    setSearchData([]);
+  }
 
   
   return (
@@ -19,10 +25,10 @@ function Search({searchInput, setSearchInput, onChange, searchData, setSearchDat
         <div className='relative bg-darkColdBlue-500 w-full '> 
           <div className='absolute bg-darkColdBlue-700 w-full z-10 left-0 top-0 rounded-md'> 
             {searchData.map(game => (
-              <div className='flex items-center text-lightColdBlue-100 border-x-2  border-b-2 border-darkColdBlue-400'>
+              <NavLink to={`/${game.id}`} onClick={() => SearchInputReset()} key={game.id} className='flex items-center text-lightColdBlue-100 border-x-2  border-b-2 border-darkColdBlue-400'>
                 <div className='w-20 h-20 m-2 bg-cover bg-center rounded-lg' style={{backgroundImage: `url(${game.background_image})`}}></div>
                 <span key={game.id}>{game.name}</span>
-              </div>
+              </NavLink>
             ))}
             </div>
         </div>
