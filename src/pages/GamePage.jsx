@@ -34,27 +34,33 @@ function GamePage() {
     fetchScreens();
   },[gameId])
 
-  // useEffect(() => {
-  //   console.log(gameData)
-  // },[gameData])
+  useEffect(() => {
+    console.log(gameData)
+  },[gameData])
 
   return (
     <div className=''>
       {gameData && (
-        <div className='flex gap-8 justify-between'>
-          <Head title={gameId} description={gameId}/>
-          <div className='bg-darkColdBlue-500 p-4 flex-1'>
-            <div>
-              <h1 className='text-lightColdBlue-100 font-poppins text-3xl font-semibold'>{gameData.name}</h1>
-              <span>{gameData.rating}</span>
+        <div className='flex flex-col gap-8'>
+          <div className='flex gap-8 justify-between'>
+            <Head title={gameId} description={gameId}/>
+            <div className='bg-darkColdBlue-500 p-4 flex-1 rounded-sm flex flex-col gap-8'>
+              <div className='p-2'>
+                <h1 className='text-lightColdBlue-100 font-poppins text-3xl font-semibold'>{gameData.name}</h1>
+                {/* <span>{gameData.rating}</span> */}
+              </div>
+              {gameData.screenshots && (<Carousel screenshots={gameData.screenshots}/>)}
             </div>
-            {gameData.screenshots && (<Carousel screenshots={gameData.screenshots}/>)}
-            <p>{gameData.description_raw}</p>
-          </div>
-            {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
-          <div>
-            <img className='w-[400px]' src={gameData.background_image} alt="" />
 
+              {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
+            <div className='bg-darkColdBlue-500 rounded-md'>
+              <img className='w-96 rounded-md' src={gameData.background_image} alt="" />
+
+            </div>
+          </div>
+          <div className='flex flex-col gap-2 bg-darkColdBlue-500 w-full p-4 rounded-md font-roboto'>
+            <h2 className='text-lightColdBlue-100 text-xl font-semibold font-poppins'>Description</h2>
+            <p className='text-[#cccccc]'>{gameData.description_raw}</p>
           </div>
         </div>
       )}
