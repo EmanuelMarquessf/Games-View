@@ -11,6 +11,11 @@ export default {
   theme: {
     colors: {
       'darkColdBlue': {
+        60: '#F3F6FF',
+        70: '#DCE5FC',
+        70: '#BEC9E4',
+        80: '#A0ACCE',
+        90: '#7E8BAF',
         100: '#616F94',
         200: '#4D5A7D',
         300: '#374466',

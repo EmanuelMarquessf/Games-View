@@ -1,71 +1,145 @@
-import React, { useEffect, useState } from 'react'
-import Head from '../components/Head';
+import React, { useEffect, useState } from "react";
+import Head from "../components/Head";
 
-import Carousel from '../components/Carousel';
-import { useParams } from 'react-router-dom';
+import Carousel from "../components/Carousel";
+import GameInfo from "../components/GameInfo";
+import GenreCard from "../components/GenreCard";
+import GenreTag from "../components/gameCard/GenreTag";
+import PlatformCard from "../components/PlatformCard";
+import StoreIcon from "../components/StoreIcon";
+import SiteCard from "../components/SiteCard";
+import { useParams } from "react-router-dom";
 
 import { fetchGameData, fetchGameScreenshots } from "../services/rawg.service";
 
-
 function GamePage() {
-  const [gameData, setGameData] = useState([])
+  const [gameData, setGameData] = useState([]);
   const params = useParams();
   const gameId = params.id;
+  const [loading, setLoading] = useState(false);
 
-  
   async function fetchData() {
+    setLoading(true);
     const data = await fetchGameData(gameId);
-    const dataScreens = await fetchGameScreenshots(gameId)
+    const dataScreens = await fetchGameScreenshots(gameId);
 
-    const gameObject = {...data, screenshots: dataScreens.results}
-    setGameData(gameObject)
+    const gameObject = { ...data, screenshots: dataScreens.results };
+    setGameData(gameObject);
   }
 
   async function fetchScreens() {
-    const data = await fetchGameScreenshots(gameId)
+    const data = await fetchGameScreenshots(gameId);
 
-    const gameObject = {...gameData, screenshots: data}
-    setGameData({gameObject})
+    const gameObject = { ...gameData, screenshots: data };
+    setGameData({ gameObject });
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }
-
 
   useEffect(() => {
     fetchData();
     fetchScreens();
-  },[gameId])
+  }, [gameId]);
 
   useEffect(() => {
-    console.log(gameData)
-  },[gameData])
+    console.log(gameData);
+  }, [gameData]);
 
+  if (loading) return null;
   return (
-    <div className=''>
+    <div className="">
       {gameData && (
-        <div className='flex flex-col gap-8'>
-          <div className='flex gap-8 justify-between'>
-            <Head title={gameId} description={gameId}/>
-            <div className='bg-darkColdBlue-500 p-4 flex-1 rounded-sm flex flex-col gap-8'>
-              <div className='p-2'>
-                <h1 className='text-lightColdBlue-100 font-poppins text-3xl font-semibold'>{gameData.name}</h1>
+        <div className="flex flex-col gap-8">
+          <div className="flex gap-8 justify-between">
+            <Head title={gameId} description={gameId} />
+            <div className="bg-darkColdBlue-500 p-4 flex-1 rounded-sm flex flex-col gap-8">
+              <div className="p-2">
+                <h1 className="text-lightColdBlue-100 font-poppins text-3xl font-semibold">
+                  {gameData.name}
+                </h1>
                 {/* <span>{gameData.rating}</span> */}
               </div>
-              {gameData.screenshots && (<Carousel screenshots={gameData.screenshots}/>)}
+              {gameData.screenshots && (
+                <Carousel
+                  loading={loading}
+                  setLoading={setLoading}
+                  screenshots={gameData.screenshots}
+                />
+              )}
             </div>
 
-              {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
-            <div className='bg-darkColdBlue-500 rounded-md'>
-              <img className='w-96 rounded-md' src={gameData.background_image} alt="" />
+            {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
+            <div className="flex flex-col gap-4 bg-darkColdBlue-500 w-[450px] rounded-sm max-h-[800px] overflow-y-auto">
+              <div
+                className="bg-cover bg-center w-[450px] min-h-60 h-60 rounded-sm"
+                style={{ backgroundImage: `url(${gameData.background_image}` }}
+              >
+                {" "}
+              </div>
+              <div className="p-2">
+                <GameInfo gameData={gameData}></GameInfo>
+              </div>
+              {gameData.website != "" || gameData.reddit_url != "" ? (
+                <div className="grid grid-cols-2 gap-2 items-center  p-2">
+                  <SiteCard
+                    url={gameData.website}
+                    text="Official Website"
+                    slug="official"
+                  ></SiteCard>
+                  <SiteCard
+                    url={gameData.reddit_url}
+                    text="Reddit"
+                    slug="reddit"
+                  ></SiteCard>
+                </div>
+              ) : null}
+              <div className="flex flex-col gap-2 p-2">
+                <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins">
+                  Category/Genre
+                </h3>
+                <div className="w-full flex flex-row gap-2 flex-wrap ">
+                  {gameData.genres?.map((genre) => (
+                    <GenreCard genre={genre.name} key={genre.id}></GenreCard>
+                  ))}
+                </div>
+              </div>
+              {gameData.stores?.length > 0 ? (
+                <div className="flex flex-col gap-2 p-2">
+                  <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins">
+                    Stores
+                  </h3>
+                  <div className="w-full grid grid-cols-2 gap-2 items-center">
+                    {gameData.stores.map((store) => (
+                      <StoreIcon store={store.store} key={store.id}></StoreIcon>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
 
+              <div className="flex flex-col gap-2 p-2">
+                <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins">
+                  Tags
+                </h3>
+                <div className="w-full flex flex-row gap-1 flex-wrap ">
+                  {gameData?.tags?.slice(0, 10).map((tag) => (
+                    <GenreTag genre={tag.name} key={tag.id}></GenreTag>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-          <div className='flex flex-col gap-2 bg-darkColdBlue-500 w-full p-4 rounded-md font-roboto'>
-            <h2 className='text-lightColdBlue-100 text-xl font-semibold font-poppins'>Description</h2>
-            <p className='text-[#cccccc]'>{gameData.description_raw}</p>
+          <div className="flex flex-col gap-2 bg-darkColdBlue-500 w-full p-4 rounded-md font-roboto">
+            <h2 className="text-lightColdBlue-100 text-xl font-semibold font-poppins">
+              Description
+            </h2>
+            <p className="text-[#cccccc]">{gameData.description_raw}</p>
           </div>
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default GamePage
+export default GamePage;
