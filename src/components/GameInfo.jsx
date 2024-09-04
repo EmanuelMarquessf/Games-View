@@ -2,7 +2,7 @@ import React from "react";
 
 function GameInfo({ gameData }) {
   return (
-    <div className="border border-darkColdBlue-300 text-darkColdBlue-90 rounded-sm shadow-lg py-4">
+    <div className="border border-darkColdBlue-300 text-darkColdBlue-90 rounded-md shadow-lg py-4">
       <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins text-lg mb-4 px-2">
         {gameData.name}
       </h3>

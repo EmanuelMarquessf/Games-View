@@ -10,7 +10,7 @@ import StoreIcon from "../components/StoreIcon";
 import SiteCard from "../components/SiteCard";
 import { useParams } from "react-router-dom";
 
-import { fetchGameData, fetchGameScreenshots } from "../services/rawg.service";
+import { fetchGameData, fetchGameScreenshots, fetchGameStore } from "../services/rawg.service";
 
 function GamePage() {
   const [gameData, setGameData] = useState([]);
@@ -22,25 +22,18 @@ function GamePage() {
     setLoading(true);
     const data = await fetchGameData(gameId);
     const dataScreens = await fetchGameScreenshots(gameId);
+    const dataStores = await fetchGameStore(gameId)
 
-    const gameObject = { ...data, screenshots: dataScreens.results };
+    const gameObject = { ...data, screenshots: dataScreens.results, storeData: dataStores.results };
     setGameData(gameObject);
   }
 
-  async function fetchScreens() {
-    const data = await fetchGameScreenshots(gameId);
-
-    const gameObject = { ...gameData, screenshots: data };
-    setGameData({ gameObject });
-
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }
 
   useEffect(() => {
     fetchData();
-    fetchScreens();
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   }, [gameId]);
 
   useEffect(() => {
@@ -54,7 +47,7 @@ function GamePage() {
         <div className="flex flex-col gap-8">
           <div className="flex gap-8 justify-between">
             <Head title={gameId} description={gameId} />
-            <div className="bg-darkColdBlue-500 p-4 flex-1 rounded-sm flex flex-col gap-8">
+            <div className="bg-darkColdBlue-500 p-4 flex-1 rounded-md flex flex-col gap-8">
               <div className="p-2">
                 <h1 className="text-lightColdBlue-100 font-poppins text-3xl font-semibold">
                   {gameData.name}
@@ -71,9 +64,9 @@ function GamePage() {
             </div>
 
             {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
-            <div className="flex flex-col gap-4 bg-darkColdBlue-500 w-[450px] rounded-sm max-h-[800px] overflow-y-auto">
+            <div className="flex flex-col gap-4 bg-darkColdBlue-500 w-[450px]  rounded-md max-h-[800px] overflow-x-hidden overflow-y-auto">
               <div
-                className="bg-cover bg-center w-[450px] min-h-60 h-60 rounded-sm"
+                className="bg-cover bg-center w-[450px] min-h-60 h-60 rounded-t-md"
                 style={{ backgroundImage: `url(${gameData.background_image}` }}
               >
                 {" "}
@@ -111,8 +104,8 @@ function GamePage() {
                     Stores
                   </h3>
                   <div className="w-full grid grid-cols-2 gap-2 items-center">
-                    {gameData.stores.map((store) => (
-                      <StoreIcon store={store.store} key={store.id}></StoreIcon>
+                    {gameData.stores.map((store, index) => (
+                      <StoreIcon store={store.store} url={gameData.storeData[index].url} key={store.id}></StoreIcon>
                     ))}
                   </div>
                 </div>

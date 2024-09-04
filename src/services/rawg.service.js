@@ -46,3 +46,10 @@ export function fetchGameScreenshots(id) {
   ).then((response) => response.json());
   return data;
 }
+
+export function fetchGameStore(id) {
+  const data = fetch(
+    `${baseUrl}games/${id}/stores?key=${apiKey}`
+  ).then((response) => response.json());
+  return data;
+}

@@ -36,7 +36,7 @@ function App() {
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <div className="px-48 py-32">
+      <div className="px-48 pt-32">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path=":id" element={<GamePage />} />
