@@ -16,13 +16,27 @@ export function baseFetchData(url) {
 
 export function fetchData30Day() {
   const currentDate = new Date();
-
-  const startDate = currentDate.toLocaleDateString('en-CA');
-  const finalDate = new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
+  
+  const startDate = new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
+  const finalDate = currentDate.toLocaleDateString('en-CA');
 
   const data = fetch(
-    `${baseUrl}games?key=${apiKey}&dates=${startDate}.${finalDate}&ordering=-rating`
+    `${baseUrl}games?key=${apiKey}&dates=${startDate},${finalDate}&ordering=-rating`
   ).then((response) => response.json());
+
+  return data;
+}
+
+export function fetchNextReleases() {
+  const currentDate = new Date();
+
+  const startDate = currentDate.toLocaleDateString('en-CA');
+  const finalDate = new Date(currentDate.getTime() + 10 * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
+
+  const data = fetch(
+    `${baseUrl}games?key=${apiKey}&dates=${startDate},${finalDate}`
+  ).then((response) => response.json());
+
   return data;
 }
 

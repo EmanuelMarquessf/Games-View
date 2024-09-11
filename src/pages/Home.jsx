@@ -1,50 +1,37 @@
 import { useEffect, useState } from "react";
-import { fetchData, fetchDataSearch, fetchData30Day } from "../services/rawg.service";
+import { fetchData, fetchData30Day, fetchNextReleases} from "../services/rawg.service";
 import Head from "../components/Head";
-import GameCard from "../components/gameCard/GameCard";
+import GameSection from "../components/gameSection";
 
 function Home() {
-  const [gamesData, setGamesData] = useState([]);
-
-  fetchData30Day();
+  const [popularGamesData, setPopularGamesData] = useState([]);
+  const [releasedGamesData, setReleasedGamesData] = useState([]);
+  const [nextReleasesGamesData, setNextReleasesGamesData] = useState([]);
 
   useEffect(() => {
-    async function fetch() {
-      const data = await fetchData();
-      setGamesData(data.results);
+    async function fetchGameData() {
+      try {
+        const [releasesResponse, releasedResponse, popularResponse ] = await Promise.all([fetchNextReleases(), fetchData30Day(), fetchData()]);
+  
+        setNextReleasesGamesData(releasesResponse.results);
+        setReleasedGamesData(releasedResponse.results);
+        setPopularGamesData(popularResponse.results);
+
+      } catch (error) {
+        console.error("Erro ao buscar os dados dos jogos:", error);
+      }
     }
-    fetch();
+    fetchGameData();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(gamesData);
-  // }, [gamesData]);
 
   return (
     <>
       <Head title="Home" description="description"/>
-      <div className="flex flex-col">
-        <div className="flex flex-col gap-20">
-          <h1>Games</h1>
-          {gamesData && (
-            <div className="grid grid-cols-5 gap-8">
-              {gamesData.map(
-                (game) =>
-                  game.background_image && (
-                    <GameCard
-                      key={game.id}
-                      gId={game.id}
-                      gName={game.name}
-                      gBackGround={game.background_image}
-                      gGenres={game.genres}
-                      gPlatforms={game.parent_platforms}
-                      gStores={game.stores}
-                    />
-                  )
-              )}
-            </div>
-          )}
-        </div>
+      <div className="flex flex-col gap-20">
+        <GameSection title="Releases Games" quant={5} gamesData={nextReleasesGamesData} releases={true}/>
+        <GameSection title="Popular Games" quant={5} gamesData={popularGamesData} releases={false}/>
+        <GameSection title="Released Games" quant={5} gamesData={releasedGamesData} releases={false}/>
       </div>
     </>
   );
