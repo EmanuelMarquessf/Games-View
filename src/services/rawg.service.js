@@ -67,3 +67,17 @@ export function fetchGameStore(id) {
   ).then((response) => response.json());
   return data;
 }
+
+export function fetchSameSerieGames(id){
+  const data = fetch(
+    `${baseUrl}games/${id}/game-series?key=${apiKey}`
+  ).then((response) => response.json());
+  return data;
+}
+
+export function fetchByGenresGames(genre1, genre2){
+  const data = fetch(
+    `${baseUrl}games?key=${apiKey}&genres=${genre1},${genre2}`
+  ).then((response) => response.json());
+  return data;
+}

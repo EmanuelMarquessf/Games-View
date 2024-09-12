@@ -1,11 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { baseWebsiteUrl } from "../../config/config";
+
 import GenreTag from "./GenreTag";
 import PlatformIcon from "./PlatformIcon";
 
 function GameCard({ id, title, backGround, genres, platforms, released, releases }) {
   return (
-    <NavLink to={`${id}`} className="bg-darkColdBlue-500 rounded-xl cursor-pointer">
+    <NavLink to={`${baseWebsiteUrl}${id}`} className="bg-darkColdBlue-500 rounded-xl cursor-pointer w-[280px] h-80">
       {backGround && (
         <div
           className="w-full h-48 bg-cover bg-center rounded-t-md flex items-end justify-end"

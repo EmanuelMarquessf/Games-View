@@ -24,7 +24,6 @@ function Home() {
     fetchGameData();
   }, []);
 
-
   return (
     <>
       <Head title="Home" description="description"/>

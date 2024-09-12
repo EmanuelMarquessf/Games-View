@@ -8,26 +8,40 @@ import GenreTag from "../components/gameCard/GenreTag";
 import PlatformCard from "../components/PlatformCard";
 import StoreIcon from "../components/StoreIcon";
 import SiteCard from "../components/SiteCard";
+import GameSectionCarousel from "../components/GameSectionCarousel";
 import { useParams } from "react-router-dom";
 
-import { fetchGameData, fetchGameScreenshots, fetchGameStore } from "../services/rawg.service";
+import {
+  fetchGameData,
+  fetchGameScreenshots,
+  fetchGameStore,
+  fetchSameSerieGames,
+  fetchByGenresGames,
+} from "../services/rawg.service";
 
 function GamePage() {
   const [gameData, setGameData] = useState([]);
+  const [similarGamesData] = useState([]);
   const params = useParams();
   const gameId = params.id;
   const [loading, setLoading] = useState(false);
 
   async function fetchData() {
     setLoading(true);
+
     const data = await fetchGameData(gameId);
     const dataScreens = await fetchGameScreenshots(gameId);
-    const dataStores = await fetchGameStore(gameId)
+    const dataStores = await fetchGameStore(gameId);
+    const dataSameSerie = await fetchSameSerieGames(gameId);
 
-    const gameObject = { ...data, screenshots: dataScreens.results, storeData: dataStores.results };
+    const gameObject = {
+      ...data,
+      screenshots: dataScreens.results,
+      storeData: dataStores.results,
+      sameSerie: dataSameSerie.results,
+    };
     setGameData(gameObject);
   }
-
 
   useEffect(() => {
     fetchData();
@@ -105,7 +119,11 @@ function GamePage() {
                   </h3>
                   <div className="w-full grid grid-cols-2 gap-2 items-center">
                     {gameData.stores.map((store, index) => (
-                      <StoreIcon store={store.store} url={gameData.storeData[index].url} key={store.id}></StoreIcon>
+                      <StoreIcon
+                        store={store.store}
+                        url={gameData.storeData[index].url}
+                        key={store.id}
+                      ></StoreIcon>
                     ))}
                   </div>
                 </div>
@@ -129,6 +147,14 @@ function GamePage() {
             </h2>
             <p className="text-[#cccccc]">{gameData.description_raw}</p>
           </div>
+          {gameData?.sameSerie?.length > 0 && (
+            <GameSectionCarousel
+              title={`More than ${gameData.name}`}
+              quant={20}
+              gamesData={gameData.sameSerie}
+              releases={false}
+            />
+          )}
         </div>
       )}
     </div>
