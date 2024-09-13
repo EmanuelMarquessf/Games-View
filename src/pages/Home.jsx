@@ -7,8 +7,10 @@ function Home() {
   const [popularGamesData, setPopularGamesData] = useState([]);
   const [releasedGamesData, setReleasedGamesData] = useState([]);
   const [nextReleasesGamesData, setNextReleasesGamesData] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
+    setLoading(true)
     async function fetchGameData() {
       try {
         const [releasesResponse, releasedResponse, popularResponse ] = await Promise.all([fetchNextReleases(), fetchData30Day(), fetchData()]);
@@ -22,8 +24,12 @@ function Home() {
       }
     }
     fetchGameData();
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000);
   }, []);
 
+  if(loading) return null
   return (
     <>
       <Head title="Home" description="description"/>

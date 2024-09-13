@@ -20,11 +20,12 @@ function Carousel({ screenshots }) {
       setSelectedScreen(selectedScreen + 1);
     }
   }
+  if(screenshots.length === 0) return null
   return (
     <section className=" flex flex-col gap-2 overflow-hidden">
       <div className="flex transition-transform duration-300 ease-in-out">
         {screenshots && (
-          <div className="bg-cover w-full h-[550px] rounded-md" style={{backgroundImage: `url(${screenshots[selectedScreen].image}`}}> </div>
+          <div className="bg-cover w-full h-[550px] rounded-md z-0" style={{backgroundImage: `url(${screenshots[selectedScreen].image}`}}> </div>
         )}
       </div>
       <div className="flex items-center justify-center ">
@@ -43,7 +44,7 @@ function Carousel({ screenshots }) {
               style={{
                 backgroundImage: `url(${screen.image})`,
               }}
-              className={`w-44 h-24 bg-cover bg-center justify-center cursor-pointer rounded-md ${
+              className={`w-44 h-24 bg-cover bg-center justify-center cursor-pointer rounded-md z-0 ${
                 selectedScreen === index ? " border-lightColdBlue-600  border-4 box-content scale-110" : "filter grayscale opacity-60"
               }`}
             ></div>

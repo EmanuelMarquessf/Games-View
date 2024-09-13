@@ -1,6 +1,11 @@
 import React from "react";
+import { format } from "date-fns";
 
 function GameInfo({ gameData }) {
+
+  gameData.released = new Date();
+  const formatedDate = format(gameData.released, 'MM/dd/yyyy')
+
   return (
     <div className="border border-darkColdBlue-300 text-darkColdBlue-90 rounded-md shadow-lg py-4">
       <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins text-lg mb-4 px-2">
@@ -14,7 +19,7 @@ function GameInfo({ gameData }) {
                 Release date:
               </td>
               <td className="px-4 py-3 text-lightColdBlue-200 font-medium">
-                {gameData.released}
+                {formatedDate}
               </td>
             </tr>
             {gameData.publishers && (

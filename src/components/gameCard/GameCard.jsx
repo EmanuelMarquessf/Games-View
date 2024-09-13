@@ -1,20 +1,23 @@
-import React from "react";
+import {useState} from "react";
 import { NavLink } from "react-router-dom";
 import { baseWebsiteUrl } from "../../config/config";
+import { format } from "date-fns";
 
 import GenreTag from "./GenreTag";
 import PlatformIcon from "./PlatformIcon";
 
 function GameCard({ id, title, backGround, genres, platforms, released, releases }) {
+  released = new Date();
+  const formatedDate = format(released, 'MM/dd/yyyy')
   return (
-    <NavLink to={`${baseWebsiteUrl}${id}`} className="bg-darkColdBlue-500 rounded-xl cursor-pointer w-[280px] h-80">
+    <div className="bg-darkColdBlue-500 rounded-xl min-w-[280px] min-h-80">
       {backGround && (
-        <div
+        <NavLink to={`${baseWebsiteUrl}${id}`}
           className="w-full h-48 bg-cover bg-center rounded-t-md flex items-end justify-end"
           style={{ backgroundImage: `url(${backGround})` }}
         >
-          {releases && (<span className="bg-lightColdBlue-700 m-2 px-2 py-1 rounded-lg text-lightColdBlue-100 font-medium text-xs">{released}</span>)}
-        </div>
+          {releases && (<span className="bg-lightColdBlue-700 m-2 px-2 py-1 rounded-lg text-lightColdBlue-100 font-medium text-xs font-roboto">{formatedDate}</span>)}
+        </NavLink>
       )}
       <div className="flex flex-col gap-4 text-lightColdBlue-100 m-4">
         <div className="flex gap-1">
@@ -22,14 +25,14 @@ function GameCard({ id, title, backGround, genres, platforms, released, releases
             <PlatformIcon key={index} platform={platform}/>
           ))}
         </div>
-        <span className="font-roboto font-medium text-xl text-nowrap overflow-hidden overflow-ellipsis">{title}</span>
+        <NavLink to={`${baseWebsiteUrl}${id}`} title={title} className={`font-roboto font-medium text-xl text-nowrap overflow-hidden overflow-ellipsis`}>{title}</NavLink>
         <div className="flex gap-1">
-          {genres.map((genre, index) => (
-            <GenreTag key={index} genre={genre.name} />
+          {genres.slice(0, 4).map((genre, index) => (
+            <GenreTag key={index} genre={genre} />
           ))}
         </div>
       </div>
-    </NavLink>
+    </div>
   );
 }
 
