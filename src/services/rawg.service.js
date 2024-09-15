@@ -1,8 +1,8 @@
 import { apiKey, baseUrl } from "../config/config";
 
-export function fetchData() {
+export function fetchDataPopular() {
   const data = fetch(
-    `${baseUrl}games?key=${apiKey}&ordering=-rating&metacritic=80,100&exclude_additions=true&page_size=9`
+    `${baseUrl}games?key=${apiKey}&ordering=-rating&metacritic=80,100&exclude_additions=true`
   ).then((response) => response.json());
   return data;
 }
@@ -83,16 +83,16 @@ export function fetchGenres(){
   return data;
 }
 
-export function fetchGamesByGenre({genreId}){
+export function fetchGamesByGenre(genre){
   const data = fetch(
-    `${baseUrl}games?key=${apiKey}&genres=${genreId}`
+    `${baseUrl}games?key=${apiKey}&genres=${genre}`
   ).then((response) => response.json());
   return data;
 }
 
-export function fetchGamesByTag({tagId}){
+export function fetchGamesByTag({tag}){
   const data = fetch(
-    `${baseUrl}games?key=${apiKey}&tags=${tagId}`
+    `${baseUrl}games?key=${apiKey}&tags=${tag}`
   ).then((response) => response.json());
   return data;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchData, fetchData30Day, fetchNextReleases} from "../services/rawg.service";
+import { fetchDataPopular, fetchData30Day, fetchNextReleases} from "../services/rawg.service";
 import Head from "../components/Head";
 import GameSection from "../components/gameSection";
 
@@ -13,7 +13,7 @@ function Home() {
     setLoading(true)
     async function fetchGameData() {
       try {
-        const [releasesResponse, releasedResponse, popularResponse ] = await Promise.all([fetchNextReleases(), fetchData30Day(), fetchData()]);
+        const [releasesResponse, releasedResponse, popularResponse ] = await Promise.all([fetchNextReleases(), fetchData30Day(), fetchDataPopular()]);
   
         setNextReleasesGamesData(releasesResponse.results);
         setReleasedGamesData(releasedResponse.results);
@@ -34,9 +34,9 @@ function Home() {
     <>
       <Head title="Home" description="description"/>
       <div className="flex flex-col gap-20">
-        <GameSection title="Releases Games" quant={5} gamesData={nextReleasesGamesData} releases={true}/>
-        <GameSection title="Popular Games" quant={5} gamesData={popularGamesData} releases={false}/>
-        <GameSection title="Released Games" quant={5} gamesData={releasedGamesData} releases={false}/>
+        <GameSection title="Releases Games" filter="releases" quant={5} gamesData={nextReleasesGamesData} releases={true}/>
+        <GameSection title="Released Games" filter="released" quant={5} gamesData={releasedGamesData} releases={true}/>
+        <GameSection title="Popular Games" filter="popular" quant={5} gamesData={popularGamesData} releases={false}/>
       </div>
     </>
   );

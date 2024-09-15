@@ -7,12 +7,13 @@ import GenrePage from "./pages/GenrePage";
 import GamePage from './pages/GamePage'
 import Footer from "./components/Footer";
 
-import { fetchData, fetchDataSearch, fetchData30Day } from "./services/rawg.service";
+import { fetchDataPopular, fetchDataSearch, fetchData30Day } from "./services/rawg.service";
 import GameCard from "./components/gameCard/GameCard";
 import Search from "./components/Search";
 import Header from "./components/Header";
 import GamesByGenre from "./pages/GamesByGenre";
 import GamesByTag from "./pages/GamesByTag";
+import GamesByFilter from "./pages/GamesByFilter";
 
 function App() {
   const [searchData, setSearchData] = useState([]);
@@ -42,9 +43,9 @@ function App() {
       <div className="px-48 pt-32">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category/" element={<GenrePage />} />
-          <Route path="/category/:genreSlug" element={<GamesByGenre />} />
-          <Route path="/tag/:tagId" element={<GamesByTag />} />
+          <Route path="/genre" element={<GenrePage />} />
+          <Route path="/genre/:genre" element={<GamesByFilter />} />
+          <Route path="filter/:filter" element={<GamesByFilter />} />
           <Route path=":id" element={<GamePage />} />
         </Routes>
       </div>

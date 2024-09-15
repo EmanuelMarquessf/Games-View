@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import GameCard from "./gameCard/GameCard";
+import { NavLink } from "react-router-dom";
 
-function GameSection({title, quant, gamesData, releases}) {
+function GameSection({title, filter, quant, gamesData, releases}) {
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-darkColdBlue-60 font-roboto text-3xl font-semibold capitalize">{title.replaceAll('-', ' ')}</h1>
+      <div className="flex justify-between">
+        <h1 className="text-darkColdBlue-60 font-roboto text-3xl font-semibold capitalize">{title.replaceAll('-', ' ')}</h1>
+        <NavLink to={`filter/${filter}`} className="bg-darkColdBlue-400 px-2 font-poppins text-sm text-darkColdBlue-90 rounded-md mt-2 uppercase font-medium">view more</NavLink>
+      </div>
       {gamesData && (
         <div className="grid grid-cols-5 gap-8">
           {gamesData.slice(0, quant).map(

@@ -12,7 +12,7 @@ function Header({children}) {
         <div className='w-[2px] h-5 bg-lightColdBlue-200'></div>
         <li><NavLink to="">Game</NavLink></li>
         <div className='w-[2px] h-5 bg-lightColdBlue-200'></div>
-        <li><NavLink to="category">Category</NavLink></li>
+        <li><NavLink to="/genre">Genre</NavLink></li>
       </ul>
       <ul className='flex flex-row items-center justify-center alig gap-2 text-lightColdBlue-100'>
         <li>{children}</li>
