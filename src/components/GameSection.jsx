@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GameCard from "./gameCard/GameCard";
 
 function GameSection({title, quant, gamesData, releases}) {
   return (
     <div className="flex flex-col gap-8">
-      <h1 className="text-darkColdBlue-60 font-roboto text-3xl font-bold">{title}</h1>
+      <h1 className="text-darkColdBlue-60 font-roboto text-3xl font-semibold capitalize">{title.replaceAll('-', ' ')}</h1>
       {gamesData && (
         <div className="grid grid-cols-5 gap-8">
           {gamesData.slice(0, quant).map(

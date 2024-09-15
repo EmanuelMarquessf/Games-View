@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Head from "../components/Head";
 
-import Carousel from "../components/Carousel";
-import GameInfo from "../components/GameInfo";
-import GenreCard from "../components/GenreCard";
-import GenreTag from "../components/gameCard/GenreTag";
-import PlatformCard from "../components/PlatformCard";
-import StoreIcon from "../components/StoreIcon";
-import SiteCard from "../components/SiteCard";
-import GameSectionCarousel from "../components/GameSectionCarousel";
+import Carousel from "../components/GamePage/Carousel";
+import GameInfo from "../components/GamePage/GameInfo";
+import GenreCard from "../components/GamePage/GenreCard";
+import Tag from "../components/GamePage/Tag";
+import StoreIcon from "../components/GamePage/StoreIcon";
+import SiteCard from "../components/GamePage/SiteCard";
+import GameSectionCarousel from "../components/GamePage/GameSectionCarousel";
 import { useParams } from "react-router-dom";
 
 import {
@@ -16,7 +15,6 @@ import {
   fetchGameScreenshots,
   fetchGameStore,
   fetchSameSerieGames,
-  fetchByGenresGames,
 } from "../services/rawg.service";
 
 function GamePage() {
@@ -42,6 +40,7 @@ function GamePage() {
     };
     setGameData(gameObject);
   }
+
 
   useEffect(() => {
     fetchData();
@@ -108,11 +107,11 @@ function GamePage() {
                 </h3>
                 <div className="w-full flex flex-row gap-2 flex-wrap ">
                   {gameData.genres?.map((genre) => (
-                    <GenreCard genre={genre.name} key={genre.id}></GenreCard>
+                    <GenreCard genre={genre} key={genre.id}></GenreCard>
                   ))}
                 </div>
               </div>
-              {gameData.stores?.length > 0 ? (
+              {gameData.stores?.length > 0 && (
                 <div className="flex flex-col gap-2 p-2">
                   <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins">
                     Stores
@@ -127,18 +126,19 @@ function GamePage() {
                     ))}
                   </div>
                 </div>
-              ) : null}
-
-              <div className="flex flex-col gap-2 p-2">
-                <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins">
-                  Tags
-                </h3>
-                <div className="w-full flex flex-row gap-1 flex-wrap ">
-                  {gameData?.tags?.slice(0, 10).map((tag) => (
-                    <GenreTag genre={tag.name} key={tag.id}></GenreTag>
-                  ))}
+              )}
+              {gameData.tags?.length > 0 && (
+                <div className="flex flex-col gap-2 p-2">
+                  <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins">
+                    Tags
+                  </h3>
+                  <div className="w-full flex flex-row gap-1 flex-wrap ">
+                    {gameData.tags.slice(0, 10).map((tag) => (
+                      <Tag tag={tag} key={tag.id}></Tag>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
           <div className="flex flex-col gap-2 bg-darkColdBlue-500 w-full p-4 rounded-md font-roboto">

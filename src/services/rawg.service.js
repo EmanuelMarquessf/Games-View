@@ -31,7 +31,7 @@ export function fetchNextReleases() {
   const currentDate = new Date();
 
   const startDate = currentDate.toLocaleDateString('en-CA');
-  const finalDate = new Date(currentDate.getTime() + 10 * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
+  const finalDate = new Date(currentDate.getTime() + 30 * 24 * 60 * 60 * 1000).toLocaleDateString('en-CA');
 
   const data = fetch(
     `${baseUrl}games?key=${apiKey}&dates=${startDate},${finalDate}`
@@ -75,9 +75,24 @@ export function fetchSameSerieGames(id){
   return data;
 }
 
-export function fetchByGenresGames(genre1, genre2){
+
+export function fetchGenres(){
   const data = fetch(
-    `${baseUrl}games?key=${apiKey}&genres=${genre1},${genre2}`
+    `${baseUrl}genres?key=${apiKey}`
+  ).then((response) => response.json());
+  return data;
+}
+
+export function fetchGamesByGenre({genreId}){
+  const data = fetch(
+    `${baseUrl}games?key=${apiKey}&genres=${genreId}`
+  ).then((response) => response.json());
+  return data;
+}
+
+export function fetchGamesByTag({tagId}){
+  const data = fetch(
+    `${baseUrl}games?key=${apiKey}&tags=${tagId}`
   ).then((response) => response.json());
   return data;
 }

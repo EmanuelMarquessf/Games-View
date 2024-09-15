@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home'
+import GenrePage from "./pages/GenrePage";
 import GamePage from './pages/GamePage'
 import Footer from "./components/Footer";
 
@@ -10,6 +11,8 @@ import { fetchData, fetchDataSearch, fetchData30Day } from "./services/rawg.serv
 import GameCard from "./components/gameCard/GameCard";
 import Search from "./components/Search";
 import Header from "./components/Header";
+import GamesByGenre from "./pages/GamesByGenre";
+import GamesByTag from "./pages/GamesByTag";
 
 function App() {
   const [searchData, setSearchData] = useState([]);
@@ -39,6 +42,9 @@ function App() {
       <div className="px-48 pt-32">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/category/" element={<GenrePage />} />
+          <Route path="/category/:genreSlug" element={<GamesByGenre />} />
+          <Route path="/tag/:tagId" element={<GamesByTag />} />
           <Route path=":id" element={<GamePage />} />
         </Routes>
       </div>
