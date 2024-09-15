@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { baseWebsiteUrl } from "../../config/config";
 
@@ -6,6 +6,11 @@ import GenreTag from "./GenreTag";
 import PlatformIcon from "./PlatformIcon";
 
 function GameCard({ id, title, backGround, genres, platforms, released, releases }) {
+  console.log(platforms)
+  useEffect(() => {
+    console.log('aaa')
+  },[platforms])
+  
   return (
     <NavLink to={`${baseWebsiteUrl}${id}`} className="bg-darkColdBlue-500 rounded-xl cursor-pointer w-[280px] h-80">
       {backGround && (
@@ -18,7 +23,7 @@ function GameCard({ id, title, backGround, genres, platforms, released, releases
       )}
       <div className="flex flex-col gap-4 text-lightColdBlue-100 m-4">
         <div className="flex gap-1">
-          {platforms.map((platform, index) => (
+          {platforms?.map((platform, index) => (
             <PlatformIcon key={index} platform={platform}/>
           ))}
         </div>
