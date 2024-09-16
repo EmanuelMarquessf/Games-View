@@ -12,7 +12,7 @@ function GameCard({ id, title, backGround, genres, platforms, released, releases
   return (
     <div className="bg-darkColdBlue-500 rounded-xl min-w-[280px] min-h-80">
       {backGround && (
-        <NavLink to={`${baseWebsiteUrl}${id}`}
+        <NavLink to={`/${id}`}
           className="w-full h-48 bg-cover bg-center rounded-t-md flex items-end justify-end"
           style={{ backgroundImage: `url(${backGround})` }}
         >
