@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchDataPopular, fetchData30Day, fetchNextReleases} from "../services/rawg.service";
 import Head from "../components/Head";
-import GameSection from "../components/gameSection";
+import GameSection from "../components/GameSection.jsx";
 
 function Home() {
   const [popularGamesData, setPopularGamesData] = useState([]);
