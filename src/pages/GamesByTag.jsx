@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchGamesByTag } from '../services/rawg.service'
-import GameSection from '../components/gameSection'
+import GameSection from '../components/GameSection.jsx'
 import { useParams } from "react-router-dom";
 
 

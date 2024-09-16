@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import GameCard from "./gameCard/GameCard";
+import GameCard from "./gameCard/GameCard.jsx";
 import { NavLink } from "react-router-dom";
 
 function GameSection({title, filter, quant, gamesData, releases}) {

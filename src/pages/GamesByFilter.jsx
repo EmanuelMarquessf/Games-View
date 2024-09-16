@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import GameSection from '../components/gameSection'
 import { useParams } from "react-router-dom";
 import { fetchDataPopular, fetchData30Day, fetchNextReleases, fetchGamesByGenre, fetchGamesByTag } from "../services/rawg.service";
-import GameCard from '../components/gameCard/GameCard';
+import GameCard from '../components/gameCard/GameCard.jsx';
 
 
 function GamesByFilter() {

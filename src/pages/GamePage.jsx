@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Head from "../components/Head";
 
-import Carousel from "../components/GamePage/Carousel";
-import GameInfo from "../components/GamePage/GameInfo";
-import GenreCard from "../components/GamePage/GenreCard";
-import Tag from "../components/GamePage/Tag";
-import StoreIcon from "../components/GamePage/StoreIcon";
-import SiteCard from "../components/GamePage/SiteCard";
-import GameSectionCarousel from "../components/GamePage/GameSectionCarousel";
+import Carousel from "../components/GamePage/Carousel.jsx";
+import GameInfo from "../components/GamePage/GameInfo.jsx";
+import GenreCard from "../components/GamePage/GenreCard.jsx";
+import Tag from "../components/GamePage/Tag.jsx";
+import StoreIcon from "../components/GamePage/StoreIcon.jsx";
+import SiteCard from "../components/GamePage/SiteCard.jsx";
+import GameSectionCarousel from "../components/GamePage/GameSectionCarousel.jsx";
 import { useParams } from "react-router-dom";
 
 import {
