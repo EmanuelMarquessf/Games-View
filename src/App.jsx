@@ -40,7 +40,7 @@ function App() {
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <div className="px-48 pt-32">
+      <div className="px-2 lg:px-16 2xl:px-48 pt-32">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/genre" element={<GenrePage />} />

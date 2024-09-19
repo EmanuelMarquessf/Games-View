@@ -22,20 +22,20 @@ function Carousel({ screenshots }) {
   }
   if(screenshots.length === 0) return null
   return (
-    <section className=" flex flex-col gap-2 overflow-hidden">
+    <section className="flex flex-col gap-2 overflow-hidden h-auto">
       <div className="flex transition-transform duration-300 ease-in-out">
         {screenshots && (
-          <div className="bg-cover w-full h-[550px] rounded-md z-0" style={{backgroundImage: `url(${screenshots[selectedScreen].image}`}}> </div>
+          <div className="bg-cover w-full h-[200px] md:h-[400px] lg:h-[450px] lg:min-h-[450px] xl:min-h-[500px] rounded-md z-0 bg-center" style={{backgroundImage: `url(${screenshots[selectedScreen].image}`}}> </div>
         )}
       </div>
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center">
         <button
           className="text-lightColdBlue-100 font-extrabold"
           onClick={slidePrev}
         >
           <ChevronLeft size={40} />
         </button>
-        <div className="grid grid-flow-col items-center justify-center gap-5 overflow-hidden h-32 w-full px-2 ">
+        <div className="grid grid-flow-col items-center justify-center gap-5 overflow-hidden h-20 md:h-32 w-full px-2 ">
           {screenshots.slice(0, 4).map((screen, index) => (
 
             <div
@@ -44,7 +44,7 @@ function Carousel({ screenshots }) {
               style={{
                 backgroundImage: `url(${screen.image})`,
               }}
-              className={`w-44 h-24 bg-cover bg-center justify-center cursor-pointer rounded-md z-0 ${
+              className={`w-12 md:w-36 lg:w-28 2xl:w-44 h-12 md:h-24 bg-cover bg-center justify-center cursor-pointer rounded-md z-0 ${
                 selectedScreen === index ? " border-lightColdBlue-600  border-4 box-content scale-110" : "filter grayscale opacity-60"
               }`}
             ></div>

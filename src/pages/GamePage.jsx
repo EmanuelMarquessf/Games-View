@@ -58,10 +58,9 @@ function GamePage() {
     <div className="">
       {gameData && (
         <div className="flex flex-col gap-8">
-          <div className="flex gap-8 justify-between">
-            <Head title={gameId} description={gameId} />
-            <div className="bg-darkColdBlue-500 p-4 flex-1 rounded-md flex flex-col gap-8">
-              <div className="p-2">
+          <div className="flex flex-col  lg:flex-row gap-8 justify-between">
+            <div className=" order-2 lg:order-1 bg-darkColdBlue-500 p-4 flex-1 rounded-md flex flex-col gap-8 w-full">
+              <div className="hidden lg:block p-2">
                 <h1 className="text-lightColdBlue-100 font-poppins text-3xl font-semibold">
                   {gameData.name}
                 </h1>
@@ -77,12 +76,11 @@ function GamePage() {
             </div>
 
             {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
-            <div className="flex flex-col gap-4 bg-darkColdBlue-500 w-[450px]  rounded-md max-h-[800px] overflow-x-hidden overflow-y-auto">
+            <div className="order-1 lg:order-2 flex flex-col gap-4 bg-darkColdBlue-500 w-full lg:w-[400px] min-w-[300px] h-full max-h-[750px] rounded-md overflow-x-hidden overflow-y-auto">
               <div
-                className="bg-cover bg-center w-[450px] min-h-60 h-60 rounded-t-md"
+                className="bg-cover bg-center w-full min-h-60 h-80 md:min-h-96 lg:min-h-60 lg:h-52 xl:h-96 rounded-t-md"
                 style={{ backgroundImage: `url(${gameData.background_image}` }}
               >
-                {" "}
               </div>
               <div className="p-2">
                 <GameInfo gameData={gameData}></GameInfo>
@@ -116,7 +114,7 @@ function GamePage() {
                   <h3 className="uppercase text-lightColdBlue-100 font-semibold font-poppins">
                     Stores
                   </h3>
-                  <div className="w-full grid grid-cols-2 gap-2 items-center">
+                  <div className="w-full grid md:grid-cols-3  lg:grid-cols-2 gap-2 items-center">
                     {gameData.stores.map((store, index) => (
                       <StoreIcon
                         store={store.store}
@@ -142,10 +140,10 @@ function GamePage() {
             </div>
           </div>
           <div className="flex flex-col gap-2 bg-darkColdBlue-500 w-full p-4 rounded-md font-roboto">
-            <h2 className="text-lightColdBlue-100 text-xl font-semibold font-poppins">
+            <h2 className="text-lightColdBlue-100 text-xl font-semibold font-poppins w-full">
               Description
             </h2>
-            <p className="text-[#cccccc]">{gameData.description_raw}</p>
+            <p className="text-[#cccccc] w-full">{gameData.description_raw}</p>
           </div>
           {gameData?.sameSerie?.length > 0 && (
             <GameSectionCarousel

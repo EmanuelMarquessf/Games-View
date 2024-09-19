@@ -61,7 +61,7 @@ function GamesByFilter() {
     <div className="flex flex-col gap-8">
       <h1 className="text-darkColdBlue-60 font-roboto text-3xl font-semibold capitalize">{title}</h1>
       {gamesData && (
-        <div className="grid grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-4 gap-8">
           {gamesData.map(
             (game) =>
               game.background_image && (

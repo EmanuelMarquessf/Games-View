@@ -10,7 +10,7 @@ function GameSection({title, filter, quant, gamesData, releases}) {
         <NavLink to={`filter/${filter}`} className="bg-darkColdBlue-400 px-2 font-poppins text-sm text-darkColdBlue-90 rounded-md mt-2 uppercase font-medium">view more</NavLink>
       </div>
       {gamesData && (
-        <div className="grid grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2  xl:grid-cols-4 items-center gap-8">
           {gamesData.slice(0, quant).map(
             (game) =>
               game.background_image && (

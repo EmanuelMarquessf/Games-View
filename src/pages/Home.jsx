@@ -34,9 +34,9 @@ function Home() {
     <>
       <Head title="Home" description="description"/>
       <div className="flex flex-col gap-20">
-        <GameSection title="Releases Games" filter="releases" quant={5} gamesData={nextReleasesGamesData} releases={true}/>
-        <GameSection title="Released Games" filter="released" quant={5} gamesData={releasedGamesData} releases={true}/>
-        <GameSection title="Popular Games" filter="popular" quant={5} gamesData={popularGamesData} releases={false}/>
+        <GameSection title="Releases Games" filter="releases" quant={4} gamesData={nextReleasesGamesData} releases={true}/>
+        <GameSection title="Released Games" filter="released" quant={4} gamesData={releasedGamesData} releases={true}/>
+        <GameSection title="Popular Games" filter="popular" quant={4} gamesData={popularGamesData} releases={false}/>
       </div>
     </>
   );
