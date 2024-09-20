@@ -20,10 +20,10 @@ function Search({
 
   return (
     <div className="flex gap-2 rounded-lg text-darkColdBlue-700 ">
-      <div className="flex items-center p-1 w-full bg-darkColdBlue-800 rounded-md text-lightColdBlue-200">
+      <div className="flex items-center px-2  w-full bg-darkColdBlue-800 rounded-md text-lightColdBlue-200">
         <input
           placeholder="Search"
-          className="px-2 py-1 lg:px-4 lg:py-2 border-none focus:outline-none font-normal bg-darkColdBlue-800"
+          className="py-1 px-2 lg:py-3 border-none focus:outline-none font-normal bg-darkColdBlue-800"
           type="text"
           value={searchInput}
           onChange={onChange}
