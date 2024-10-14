@@ -14,6 +14,7 @@ import Header from "./components/Header";
 import GamesByGenre from "./pages/GamesByGenre";
 import GamesByTag from "./pages/GamesByTag";
 import GamesByFilter from "./pages/GamesByFilter";
+import Comming from "./pages/Comming";
 
 function App() {
   const [searchData, setSearchData] = useState([]);
@@ -40,16 +41,17 @@ function App() {
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <div className="px-2 lg:px-16 2xl:px-48 pt-32">
+      <div className="px-2 lg:px-16 2xl:px-48 pt-10">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/genre" element={<GenrePage />} />
           <Route path="/genre/:genre" element={<GamesByFilter />} />
           <Route path="filter/:filter" element={<GamesByFilter />} />
           <Route path=":id" element={<GamePage />} />
+          <Route path="/comming" element={<Comming />} />
         </Routes>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </BrowserRouter>
   );
 }

@@ -19,11 +19,11 @@ function Search({
   }
 
   return (
-    <div className="flex gap-2 rounded-lg text-darkColdBlue-700 ">
+    <div className="flex flex-col  rounded-lg text-darkColdBlue-700">
       <div className="flex items-center px-2  w-full bg-darkColdBlue-800 rounded-md text-lightColdBlue-200">
         <input
           placeholder="Search"
-          className="py-1 px-2 lg:py-3 border-none focus:outline-none font-normal bg-darkColdBlue-800"
+          className="px-2 py-3 w-[300px] border-none focus:outline-none font-normal bg-darkColdBlue-800"
           type="text"
           value={searchInput}
           onChange={onChange}
@@ -32,7 +32,7 @@ function Search({
       </div>
       {searchData && (
         <div className="relative bg-darkColdBlue-500 w-full">
-          <div className="absolute bg-darkColdBlue-700 w-full z-10 left-0 top-0 rounded-md">
+          <div className="absolute bg-darkColdBlue-700 w-full z-10  left-0 top-0 rounded-md">
             {searchData.map((game) => (
               <NavLink
                 to={`/${game.id}`}
