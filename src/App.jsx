@@ -39,7 +39,7 @@ function App() {
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <div className="px-2 lg:px-16 2xl:px-48 py-20 md:py-20 min-h-[800px]">
+      <div className="px-2 lg:px-16 2xl:px-36 py-20 md:py-20 min-h-[1000px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/genre" element={<GenrePage />} />
