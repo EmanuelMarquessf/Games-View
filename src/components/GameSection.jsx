@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import GameCard from "./gameCard/GameCard.jsx";
 import { NavLink } from "react-router-dom";
 

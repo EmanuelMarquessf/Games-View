@@ -7,12 +7,10 @@ import GenrePage from "./pages/GenrePage";
 import GamePage from './pages/GamePage'
 import Footer from "./components/Footer";
 
-import { fetchDataPopular, fetchDataSearch, fetchData30Day } from "./services/rawg.service";
-import GameCard from "./components/gameCard/GameCard";
+import { fetchDataSearch } from "./services/rawg.service";
+
 import Search from "./components/Search";
 import Header from "./components/Header";
-import GamesByGenre from "./pages/GamesByGenre";
-import GamesByTag from "./pages/GamesByTag";
 import GamesByFilter from "./pages/GamesByFilter";
 import Comming from "./pages/Comming";
 
@@ -25,11 +23,11 @@ function App() {
     setSearchInput(inputValue);
   
     async function fetch() {
-      const data = await fetchDataSearch(inputValue); // Use inputValue aqui
+      const data = await fetchDataSearch(inputValue); 
       setSearchData(data.results);
     }
   
-    if (inputValue.length > 3) { // Use inputValue aqui também
+    if (inputValue.length > 3) { 
       fetch();
     } else if(inputValue.length < 3){
       setSearchData([])
@@ -41,7 +39,7 @@ function App() {
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <div className="px-2 lg:px-16 2xl:px-48 py-20 md:py-20">
+      <div className="px-2 lg:px-16 2xl:px-48 py-20 md:py-20 min-h-[800px]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/genre" element={<GenrePage />} />
