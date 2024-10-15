@@ -10,7 +10,7 @@ function Search({
   setSearchData,
 }) {
   useEffect(() => {
-    console.log(searchData);
+    // console.log(searchData);
   }, [searchData]);
 
   function SearchInputReset() {

@@ -15,7 +15,7 @@ function PlatformPage() {
   }, []);
 
   useEffect(() => {
-    console.log(genresData);
+    // console.log(genresData);
   }, [genresData]);
 
   return (

@@ -50,7 +50,7 @@ function GamePage() {
   }, [gameId]);
 
   useEffect(() => {
-    console.log(gameData);
+    // console.log(gameData);
   }, [gameData]);
 
   if (loading) return null;

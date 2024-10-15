@@ -19,7 +19,7 @@ function GamesByGenre() {
   },[genreId])
 
   useEffect(() => {
-    console.log(gamesData)
+    // console.log(gamesData)
   },[gamesData])
 
   return (

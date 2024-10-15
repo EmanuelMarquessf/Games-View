@@ -54,7 +54,7 @@ function GamesByFilter() {
   },[gamesData])
 
   useEffect(() => {
-    console.log(filter)
+    // console.log(filter)
   }, [filter])
 
   return (

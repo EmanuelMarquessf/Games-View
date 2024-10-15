@@ -19,7 +19,7 @@ function GamesByTag() {
   },[tagId])
 
   useEffect(() => {
-    console.log(gamesData)
+    // console.log(gamesData)
   },[gamesData])
 
   return (
