@@ -41,7 +41,7 @@ function App() {
       <Header> 
         <Search searchInput={searchInput} setSearchInput={setSearchInput} onChange={searchChange} searchData={searchData} setSearchData={setSearchData}/>
       </Header>
-      <div className="px-2 lg:px-16 2xl:px-48 pt-10">
+      <div className="px-2 lg:px-16 2xl:px-48 pt-10 pb-20 md:py-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/genre" element={<GenrePage />} />
@@ -51,7 +51,7 @@ function App() {
           <Route path="/comming" element={<Comming />} />
         </Routes>
       </div>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </BrowserRouter>
   );
 }

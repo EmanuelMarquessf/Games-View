@@ -38,3 +38,7 @@ body{
 .scrolling {
   animation: scroll 5s linear infinite;
 }
+
+body{
+  scroll-behavior: smooth;
+}
