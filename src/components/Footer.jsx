@@ -8,7 +8,7 @@ function Footer() {
         <li>
           <NavLink to="/"><img className="w-14" src="/favicon.svg" alt="" /></NavLink>
         </li>
-        <li>Develop by <a className='font-medium underline text-base hover:text-darkColdBlue-60' target="_blank" href="https://emanuelmarquessf.netlify.app/">Emanuel Fonseca</a></li>
+        <li>Developed by <a className='font-medium underline text-base hover:text-darkColdBlue-60' target="_blank" href="https://emanuelmarquessf.netlify.app/">Emanuel Fonseca</a></li>
         <li><a className='hover:text-darkColdBlue-60' href="#header">VOLTAR PARA O TOPO</a></li>
       </ul>
     </footer>
