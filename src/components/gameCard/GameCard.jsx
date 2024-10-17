@@ -25,7 +25,7 @@ function GameCard({ id, title, backGround, genres, platforms, released, releases
             <PlatformIcon key={index} platform={platform}/>
           ))}
         </div>
-        <NavLink to={`${baseWebsiteUrl}${id}`} title={title} className={`font-roboto font-medium text-xl text-nowrap overflow-hidden overflow-ellipsis`}>{title}</NavLink>
+        <NavLink to={`/${id}`} title={title} className={`font-roboto font-medium text-xl text-nowrap overflow-hidden overflow-ellipsis`}>{title}</NavLink>
         <div className="flex gap-1">
           {genres.slice(0, 4).map((genre, index) => (
             <GenreTag key={index} genre={genre} />

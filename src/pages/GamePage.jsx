@@ -59,12 +59,11 @@ function GamePage() {
       {gameData && (
         <div className="flex flex-col gap-8">
           <div className="flex flex-col  lg:flex-row gap-8 justify-between">
-            <div className=" order-2 lg:order-1 bg-darkColdBlue-500 p-4 flex-1 rounded-md flex flex-col gap-8 w-full">
+            <div className="order-2 lg:order-1 bg-darkColdBlue-500 p-4 flex-1 rounded-md flex flex-col gap-8 w-full">
               <div className="hidden lg:block p-2">
                 <h1 className="text-lightColdBlue-100 font-poppins text-3xl font-semibold">
                   {gameData.name}
                 </h1>
-                {/* <span>{gameData.rating}</span> */}
               </div>
               {gameData.screenshots && (
                 <Carousel
@@ -76,8 +75,7 @@ function GamePage() {
             </div>
 
             {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
-            <div className="order-1 lg:order-2 flex flex-col gap-4 bg-darkColdBlue-500 w-full lg:w-[400px] min-w-[300px] h-full max-h-[750px] rounded-md overflow-x-hidden overflow-y-auto">
-
+            <div className="order-1 lg:order-2 flex flex-col gap-4 bg-darkColdBlue-500 w-full lg:w-[400px] min-w-[300px] md:min-w-[400px] h-full max-h-[750px] rounded-md overflow-x-hidden overflow-y-auto">
               <img className="min-h-60 h-80 md:min-h-96 lg:min-h-60 lg:h-52 xl:h-96 rounded-t-md" src={gameData.background_image} alt="" />
               <div className="p-2">
                 <GameInfo gameData={gameData}></GameInfo>
