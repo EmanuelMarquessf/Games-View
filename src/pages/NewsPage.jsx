@@ -28,19 +28,24 @@ function NewsPage() {
 
   if (loading) return null;
   return (
-    <div className="grid grid-cols-3 gap-8 aspect-video">
-      {newsData.map((news,index) => (
-        <NewsCard
-          key={index}
-          index={4}
-          title={news.title}
-          description={news.description}
-          link={news.link}
-          image={news.image_url}
-          author={news.creator}
-          date={news.pubDate}
-        />
-      ))}
+    <div className="flex flex-col gap-8">
+      <h1 className="text-darkColdBlue-60 font-poppins text-3xl font-semibold capitalize">
+        Last Games News
+      </h1>
+      <div className="grid grid-cols-3 gap-8 aspect-video">
+        {newsData.map((news, index) => (
+          <NewsCard
+            key={index}
+            index={4}
+            title={news.title}
+            description={news.description}
+            link={news.link}
+            image={news.image_url}
+            author={news.creator}
+            date={news.pubDate}
+          />
+        ))}
+      </div>
     </div>
   );
 }
