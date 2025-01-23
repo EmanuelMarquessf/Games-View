@@ -6,7 +6,7 @@ function GameSection({title, filter, quant, gamesData, releases}) {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex justify-between items-end">
-        <h1 className="text-darkColdBlue-60 font-roboto text-3xl font-semibold capitalize">{title.replaceAll('-', ' ')}</h1>
+        <h1 className="text-darkColdBlue-60 font-poppins text-3xl font-semibold capitalize">{title.replaceAll('-', ' ')}</h1>
         <NavLink to={`filter/${filter}`} className="bg-darkColdBlue-400 px-2 py-1  font-poppins text-xs text-darkColdBlue-90 rounded-md uppercase font-medium">view more</NavLink>
       </div>
       {gamesData && (
