@@ -32,8 +32,8 @@ function Home() {
       try {
         const data = await fetchDataNews()
 
-        setNewsData(data.articles)
-  
+        setNewsData(data.results)
+        console.log(newsData)
       } catch (error) {
         console.error("Erro ao buscar os dados dos jogos:", error);
       }

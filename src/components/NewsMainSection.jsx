@@ -19,7 +19,7 @@ function NewsMainSection({ newsData }) {
       <div className="grid grid-row-2 grid-flow-col gap-8 aspect-[16/7] font-roboto ">
         {newsData.slice(0, 4).map((news, index) => (
           <a
-            href={news.url}
+            href={news.link}
             target="_blank"
             key={index}
             className={`flex flex-col justify-end bg-cover bg-center rounded-xl opacity-75 hover:scale-105 hover:opacity-100 transition-all duration-300 ease-in-out ${
@@ -27,7 +27,7 @@ function NewsMainSection({ newsData }) {
             } ${index === 1 ? "col-span-2" : ""} ${
               index >= 2 ? "row-start-2 col-span-1" : ""
             }`}
-            style={{ backgroundImage: `url(${news.urlToImage})` }}
+            style={{ backgroundImage: `url(${news.image_url})` }}
           >
             <div className="flex flex-col gap-2 w-full rounded-b-lg px-4 py-2 bg-darkColdBlue-500 opacity-95">
               <h1
@@ -49,8 +49,8 @@ function NewsMainSection({ newsData }) {
                 {news.description}
               </p>
               <div className="flex justify-between text-darkColdBlue-200 font-extrabold font-roboto">
-                <span className="">{news.author}</span>
-                <span>{formatData(news.publishedAt)}</span>
+                <span className="">{news.creator}</span>
+                <span>{formatData(news.pubDate)}</span>
               </div>
             </div>
           </a>

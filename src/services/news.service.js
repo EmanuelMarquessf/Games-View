@@ -2,7 +2,7 @@ import { newsApiKey, baseUrl } from "../config/config";
 
 export function fetchDataNews() {
   const data = fetch(
-    `https://newsapi.org/v2/everything?q=videogame&language=en&from=2025-01-01&pageSize=10&sortBy=publishedAt&totalResults=10&apiKey=${newsApiKey}`
+    `https://newsdata.io/api/1/news?apikey=${newsApiKey}&q=videogames&language=en&category=entertainment&size=4`
   ).then((response) => response.json());
 
   console.log(data)
