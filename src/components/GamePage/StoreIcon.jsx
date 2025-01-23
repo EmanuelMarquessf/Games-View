@@ -6,7 +6,7 @@ function StoreIcon({ store, url }) {
       rel="noopener noreferrer"
       target="_blank"
       href={`${url}`}
-      className="p-2 flex gap-2 items-center bg-darkColdBlue-400 hover:bg-darkColdBlue-300 transition-colors rounded-md text-darkColdBlue-60 font-medium"
+      className="p-2 flex gap-2 items-center bg-darkColdBlue-400 hover:bg-darkColdBlue-300 transition-colors rounded-md text-darkColdBlue-60 font-medium select-none"
     >
       <img
         className="w-8 h-8"

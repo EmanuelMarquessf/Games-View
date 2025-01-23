@@ -10,7 +10,7 @@ function GameCard({ id, title, backGround, genres, platforms, released, releases
   released = new Date();
   const formatedDate = format(released, 'MM/dd/yyyy')
   return (
-    <div className="bg-darkColdBlue-500 rounded-xl min-w-[280px] min-h-80">
+    <div className="bg-darkColdBlue-500 rounded-xl min-w-[280px] min-h-80 opacity-85 hover:scale-105 hover:opacity-100 transition-all duration-300 ease-in-out select-none">
       {backGround && (
         <NavLink to={`/${id}`}
           className="w-full h-48 bg-cover bg-center rounded-t-md flex items-end justify-end"

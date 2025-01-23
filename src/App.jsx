@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import GenrePage from "./pages/GenrePage";
 import GamePage from "./pages/GamePage";
+import NewsPage from "./pages/NewsPage";
 import Footer from "./components/Footer";
 
 import { fetchDataSearch } from "./services/rawg.service";
@@ -55,10 +56,11 @@ function App() {
           <Route path="filter/:filter" element={<GamesByFilter />} />
           <Route path=":id" element={<GamePage />} />
           <Route path="/comming" element={<Comming />} />
+          <Route path="/news" element={<NewsPage />} />
         </Routes>
       </div>
       <Footer></Footer>
-      <Chat></Chat>
+      {/* <Chat></Chat> */}
     </BrowserRouter>
   );
 }

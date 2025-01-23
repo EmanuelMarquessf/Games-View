@@ -3,7 +3,7 @@ import { fetchDataPopular, fetchData30Day, fetchNextReleases} from "../services/
 import { fetchDataNews } from "../services/news.service.js";
 import Head from "../components/Head";
 import GameSection from "../components/GameSection.jsx";
-import NewsMainSection from "../components/NewsMainSection.jsx";
+import NewsMainSection from "../components/News/NewsMainSection.jsx";
 
 function Home() {
   const [popularGamesData, setPopularGamesData] = useState([]);
@@ -30,7 +30,7 @@ function Home() {
     }
     async function fetchNewsData() {
       try {
-        const data = await fetchDataNews()
+        const data = await fetchDataNews(4)
 
         setNewsData(data.results)
         console.log(newsData)

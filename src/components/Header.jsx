@@ -14,6 +14,11 @@ function Header({ children }) {
         <li>
           <NavLink to="/genre">Genre</NavLink>
         </li>
+        <div className="w-[2px] h-5 bg-lightColdBlue-200"></div>
+
+        <li>
+          <NavLink to="/news">News</NavLink>
+        </li>
       </ul>
       <ul className="flex flex-row items-center justify-center gap-2  text-lightColdBlue-100">
         <li className="flex items-center">{children}</li>

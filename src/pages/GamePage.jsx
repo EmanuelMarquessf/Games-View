@@ -41,7 +41,6 @@ function GamePage() {
     setGameData(gameObject);
   }
 
-
   useEffect(() => {
     fetchData();
     setTimeout(() => {
@@ -76,11 +75,11 @@ function GamePage() {
 
             {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
             <div className="order-1 lg:order-2 flex flex-col gap-4 bg-darkColdBlue-500 w-full lg:w-[400px] min-w-[300px] md:min-w-[400px] h-full max-h-[750px] rounded-md overflow-x-hidden overflow-y-auto">
-            <img
-  className="h-80 md:h-96 lg:h-52 xl:h-96 rounded-t-md object-cover  object-center"
-  src={gameData.background_image}
-  alt="Game Background"
-/>
+              <img
+                className="h-80 md:h-96 lg:h-52 xl:h-96 rounded-t-md object-cover  object-center"
+                src={gameData.background_image}
+                alt="Game Background"
+              />
               <div className="p-2">
                 <GameInfo gameData={gameData}></GameInfo>
               </div>
