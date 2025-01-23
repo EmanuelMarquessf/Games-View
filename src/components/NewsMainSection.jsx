@@ -71,4 +71,4 @@ function NewsMainSection({ newsData }) {
   );
 }
 
-export default NewsCarrousel;
+export default NewsMainSection;
