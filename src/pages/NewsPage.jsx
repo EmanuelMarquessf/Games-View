@@ -32,7 +32,7 @@ function NewsPage() {
       <h1 className="text-darkColdBlue-60 font-poppins text-3xl font-semibold capitalize">
         Last Games News
       </h1>
-      <div className="grid grid-cols-3 gap-8 aspect-video">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 aspect-video">
         {newsData.map((news, index) => (
           <NewsCard
             key={index}
