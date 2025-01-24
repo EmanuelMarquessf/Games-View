@@ -14,7 +14,6 @@ function NewsPage() {
         const data = await fetchDataNews(6);
 
         setNewsData(data.results);
-        console.log(newsData);
       } catch (error) {
         console.error("Erro ao buscar os dados dos jogos:", error);
       }
