@@ -10,12 +10,7 @@ import SiteCard from "../components/GamePage/SiteCard.jsx";
 import GameSectionCarousel from "../components/GamePage/GameSectionCarousel.jsx";
 import { useParams } from "react-router-dom";
 
-import {
-  fetchGameData,
-  fetchGameScreenshots,
-  fetchGameStore,
-  fetchSameSerieGames,
-} from "../services/rawg.service";
+import { fetchDataBase } from "../services/rawg.service";
 
 function GamePage() {
   const [gameData, setGameData] = useState([]);
@@ -23,14 +18,15 @@ function GamePage() {
   const params = useParams();
   const gameId = params.id;
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false)
 
   async function fetchData() {
-    setLoading(true);
+    setError(false);
 
-    const data = await fetchGameData(gameId);
-    const dataScreens = await fetchGameScreenshots(gameId);
-    const dataStores = await fetchGameStore(gameId);
-    const dataSameSerie = await fetchSameSerieGames(gameId);
+    const data = await fetchDataBase("game", gameId);
+    const dataScreens = await fetchDataBase("screenshot", gameId);
+    const dataStores = await fetchDataBase("store", gameId);
+    const dataSameSerie = await fetchDataBase("sameSerie", gameId);
 
     const gameObject = {
       ...data,
@@ -42,17 +38,20 @@ function GamePage() {
   }
 
   useEffect(() => {
-    fetchData();
-    setTimeout(() => {
+    try {
+      setLoading(true);
+      fetchData();
+    } catch (error) {
+      setError(true);
+      throw("Fetch error: ", error);
+    }
+    finally{
       setLoading(false);
-    }, 1000);
+    }
+    
   }, [gameId]);
 
-  useEffect(() => {
-    // console.log(gameData);
-  }, [gameData]);
-
-  if (loading) return null;
+  if (error) return (<h1>API Error</h1>);
   return (
     <div className="">
       {gameData && (
@@ -73,7 +72,7 @@ function GamePage() {
               )}
             </div>
 
-            {/* <div className='w-[350px] h-[450px] bg-cover bg-center' style={{backgroundImage: `url(${gameData.background_image})`}}></div> */}
+            
             <div className="order-1 lg:order-2 flex flex-col gap-4 bg-darkColdBlue-500 w-full lg:w-[400px] min-w-[300px] md:min-w-[400px] h-full max-h-[750px] rounded-md overflow-x-hidden overflow-y-auto">
               <img
                 className="h-80 md:h-96 lg:h-52 xl:h-96 rounded-t-md object-cover  object-center"

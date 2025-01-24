@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchGamesByTag } from '../services/rawg.service'
+import { fetchDataBase } from '../services/rawg.service'
 import GameSection from '../components/GameSection.jsx'
 import { useParams } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function GamesByTag() {
   const [gamesData, setGamesData] = useState([])
 
   async function fetchData() {
-    const data = await fetchGamesByTag({tagId})
+    const data = await fetchDataBase("tag", {tagId})
     setGamesData(data.results)
   }
 

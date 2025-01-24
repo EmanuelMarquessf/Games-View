@@ -23,9 +23,9 @@ function Carousel({ screenshots }) {
   if(screenshots.length === 0) return null
   return (
     <section className="flex flex-col gap-2 overflow-hidden h-auto">
-      <div className="flex transition-transform duration-300 ease-in-out bg">
+      <div className="flex transition-transform duration-300 ease-in-out ">
         {screenshots && (
-          <div className="bg-cover w-full h-[200px] md:h-[400px] lg:h-[450px] lg:min-h-[450px] xl:min-h-[500px] rounded-md z-0 bg-center bg-" style={{backgroundImage: `url(${screenshots[selectedScreen].image}`}}> </div>
+          <div className="bg-cover w-full h-[200px] md:h-[400px] lg:h-[450px] lg:min-h-[450px] xl:min-h-[00px] rounded-md z-0 bg-center " style={{backgroundImage: `url(${screenshots[selectedScreen].image}`}}> </div>
         )}
       </div>
       <div className="flex items-center justify-center bg-">

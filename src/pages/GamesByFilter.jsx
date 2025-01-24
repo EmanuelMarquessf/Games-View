@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-import { fetchDataPopular, fetchData30Day, fetchNextReleases, fetchGamesByGenre, fetchGamesByTag } from "../services/rawg.service";
+import { fetchDataBase } from "../services/rawg.service";
 import GameCard from '../components/gameCard/GameCard.jsx';
 
 
@@ -20,17 +20,17 @@ function GamesByFilter() {
       filter = params.filter
       switch (filter) {
         case 'releases':
-          data = await fetchNextReleases();
+          data = await fetchDataBase("releases");
           setReleased(true);
           setTitle('Releases Games')
           break;
         case 'released':
-          data = await fetchData30Day();
+          data = await fetchDataBase("date30");
           setReleased(true);
           setTitle('Released Games')
           break;
         case 'popular':
-          data = await fetchDataPopular();
+          data = await fetchDataBase("popular");
           setTitle('Popular Games')
           break;
       }
@@ -38,12 +38,12 @@ function GamesByFilter() {
     else if(filterType[0] == 'genre'){
       filter = params.genre
       setTitle(`${filter} Games`)
-      data = await fetchGamesByGenre(filter);
+      data = await fetchDataBase('byGenre', filter);
     }
     else if(filterType[0] == 'tag'){
       filter = params.tag
       setTitle(`${filter} Games`)
-      data = await fetchGamesByTag(filter);
+      data = await fetchDataBase("byTag", filter);
     }
 
     setGamesData(data.results)

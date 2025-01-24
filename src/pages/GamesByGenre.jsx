@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetchGamesByGenre } from '../services/rawg.service'
+import { fetchDataBase } from '../services/rawg.service'
 import GameSection from '../components/GameSection.jsx'
 import { useParams } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function GamesByGenre() {
   const [gamesData, setGamesData] = useState([])
 
   async function fetchData() {
-    const data = await fetchGamesByGenre({genreId})
+    const data = await fetchDataBase("genre", genreId)
     setGamesData(data.results)
   }
 
