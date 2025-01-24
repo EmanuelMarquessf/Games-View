@@ -9,8 +9,7 @@ function GameSectionCarousel({ title, quant, gamesData, releases }) {
       </h1>
       {gamesData && (
         <div className="flex overflow-x-auto gap-8 py-4 z-10">
-          {gamesData
-            .slice(0, quant)
+          {gamesData?.slice(0, quant)
             .map(
               (game) =>
                 game.background_image && (

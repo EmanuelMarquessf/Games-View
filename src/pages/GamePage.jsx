@@ -128,7 +128,7 @@ function GamePage() {
                     Tags
                   </h3>
                   <div className="w-full flex flex-row gap-1 flex-wrap ">
-                    {gameData.tags.slice(0, 10).map((tag) => (
+                    {gameData?.tags.slice(0, 10).map((tag) => (
                       <Tag tag={tag} key={tag.id}></Tag>
                     ))}
                   </div>

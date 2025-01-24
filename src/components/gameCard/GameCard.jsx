@@ -4,15 +4,6 @@ import { NavLink } from "react-router-dom";
 import GenreTag from "./GenreTag";
 import PlatformIcon from "./PlatformIcon";
 
-function formatDate(dateString) {
-  if (!dateString) return "Unknown"; // Para tratar valores inválidos
-  const date = new Date(dateString);
-  const month = String(date.getMonth() + 1).padStart(2, "0"); // Adiciona zero à esquerda
-  const day = String(date.getDate()).padStart(2, "0");
-  const year = date.getFullYear();
-  return `${month}/${day}/${year}`;
-}
-
 function GameCard({ id, title, backGround, genres, platforms, released, releases }) {
   
   return (
@@ -33,7 +24,7 @@ function GameCard({ id, title, backGround, genres, platforms, released, releases
         </div>
         <NavLink to={`/${id}`} title={title} className={`font-roboto font-medium text-xl text-nowrap overflow-hidden overflow-ellipsis`}>{title}</NavLink>
         <div className="flex gap-1">
-          {genres.slice(0, 4).map((genre, index) => (
+          {genres?.slice(0, 4).map((genre, index) => (
             <GenreTag key={index} genre={genre} />
           ))}
         </div>

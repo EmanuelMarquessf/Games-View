@@ -36,7 +36,7 @@ function Carousel({ screenshots }) {
           <ChevronLeft size={40} />
         </button>
         <div className="grid grid-flow-col items-center justify-center gap-5 overflow-hidden h-20 md:h-32 w-full px-2 ">
-          {screenshots.slice(0, 4).map((screen, index) => (
+          {screenshots?.slice(0, 4).map((screen, index) => (
 
             <div
               key={screen.id}
