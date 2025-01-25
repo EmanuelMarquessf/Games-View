@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { fetchGenres } from "../services/rawg.service";
 import GenreCard from "../components/GenreCard/GenreCard.jsx";
+import { fetchDataBase } from "../services/rawg.service.js"
 
 function GenrePage() {
   const [genresData, setGenresData] = useState([]);
 
   async function fetchData() {
-    const data = await fetchGenres();
+    const data = await fetchDataBase("tag", '');
     setGenresData(data.results);
   }
 
@@ -15,7 +15,6 @@ function GenrePage() {
   }, []);
 
   useEffect(() => {
-    // console.log(genresData);
   }, [genresData]);
 
   return (
