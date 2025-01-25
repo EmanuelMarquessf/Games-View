@@ -15,7 +15,7 @@ function GameInfo({ gameData }) {
                 Release date:
               </td>
               <td className="px-4 py-3 text-lightColdBlue-200 font-medium">
-                {gameData.released}
+                {`${gameData.released}`}
               </td>
             </tr>
             {gameData.publishers && (

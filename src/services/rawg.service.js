@@ -46,12 +46,10 @@ function baseFetch(fetchType, info) {
   return url;
 }
 
-
-
 export async function fetchDataBase(type, obj) {
   try {
-    const url = baseFetch(type, obj); // Constrói a URL
-    const response = await fetch(url); // Faz a requisição
+    const url = baseFetch(type, obj);
+    const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error(
@@ -59,117 +57,11 @@ export async function fetchDataBase(type, obj) {
       );
     }
 
-    const data = await response.json(); // Processa a resposta como JSON
-    return data; // Retorna os dados
+    const data = await response.json();
+    return data;
 
   } catch (error) {
     console.error(`Error fetching games: ${type}`, error);
-    throw error; // Repassa o erro para ser tratado externamente, se necessário
+    throw error;
   }
-}
-
-export function fetchDataPopular() {
-  const data = fetch(
-    `${baseUrl}games?key=${apiKey}&ordering=-rating&metacritic=80,100&exclude_additions=true`
-  ).then((response) => response.json());
-
-  const currentDate = new Date();
-  currentDate = currentDate.toLocaleDateString("en-CA");
-  const finalData = calcData(currentDate);
-  console.log(finalData)
-
-  return data;
-}
-
-export function baseFetchData(url) {
-  const data = fetch(`${baseUrl}games?key=${apiKey}${url}`).then((response) =>
-    response.json()
-  );
-  return data;
-}
-
-export function fetchData30Day() {
-  const currentDate = new Date();
-
-  const startDate = new Date(
-    currentDate.getTime() - 30 * 24 * 60 * 60 * 1000
-  ).toLocaleDateString("en-CA");
-  const finalDate = currentDate.toLocaleDateString("en-CA");
-
-  const data = fetch(
-    `${baseUrl}games?key=${apiKey}&dates=${startDate},${finalDate}&ordering=-rating`
-  ).then((response) => response.json());
-
-  return data;
-}
-
-export function fetchNextReleases() {
-  const currentDate = new Date();
-
-  const startDate = currentDate.toLocaleDateString("en-CA");
-  const finalDate = new Date(
-    currentDate.getTime() + 30 * 24 * 60 * 60 * 1000
-  ).toLocaleDateString("en-CA");
-
-  const data = fetch(
-    `${baseUrl}games?key=${apiKey}&dates=${startDate},${finalDate}`
-  ).then((response) => response.json());
-
-  return data;
-}
-
-export function fetchDataSearch(textInput) {
-  const data = fetch(
-    `${baseUrl}games?key=${apiKey}&search=${textInput}&search_precise=false&page_size=5`
-  ).then((response) => response.json());
-  return data;
-}
-
-export function fetchGameData(id) {
-  const data = fetch(`${baseUrl}games/${id}?key=${apiKey}`).then((response) =>
-    response.json()
-  );
-  return data;
-}
-
-export function fetchGameScreenshots(id) {
-  const data = fetch(`${baseUrl}games/${id}/screenshots?key=${apiKey}`).then(
-    (response) => response.json()
-  );
-  return data;
-}
-
-export function fetchGameStore(id) {
-  const data = fetch(`${baseUrl}games/${id}/stores?key=${apiKey}`).then(
-    (response) => response.json()
-  );
-  return data;
-}
-
-export function fetchSameSerieGames(id) {
-  const data = fetch(`${baseUrl}games/${id}/game-series?key=${apiKey}`).then(
-    (response) => response.json()
-  );
-  return data;
-}
-
-export function fetchGenres() {
-  const data = fetch(`${baseUrl}genres?key=${apiKey}`).then((response) =>
-    response.json()
-  );
-  return data;
-}
-
-export function fetchGamesByGenre(genre) {
-  const data = fetch(`${baseUrl}games?key=${apiKey}&genres=${genre}`).then(
-    (response) => response.json()
-  );
-  return data;
-}
-
-export function fetchGamesByTag({ tag }) {
-  const data = fetch(`${baseUrl}games?key=${apiKey}&tags=${tag}`).then(
-    (response) => response.json()
-  );
-  return data;
 }
