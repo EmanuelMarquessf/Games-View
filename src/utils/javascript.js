@@ -14,3 +14,9 @@ export function calcDataReleases(todayData) {
 
   return finalDate;
 }
+
+export function formatDate(inputDate) {
+  const date = new Date(inputDate);
+  const formattedDate = date.toLocaleDateString("en-US");
+  return formattedDate;
+}

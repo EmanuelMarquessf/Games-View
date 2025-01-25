@@ -1,12 +1,7 @@
 import React from "react";
+import { formatDate } from '../../utils/javascript'
 
 function NewsCard({ index, title, description, link, image, author, date }) {
-  function formatData(date) {
-    const data = new Date(date);
-    const formattedDate = data.toLocaleDateString("en-US");
-
-    return formattedDate;
-  }
 
   function gridConfig(index){
     if(index === 0){
@@ -48,7 +43,7 @@ function NewsCard({ index, title, description, link, image, author, date }) {
           </p>
           <div className="flex justify-between text-darkColdBlue-200 font-extrabold font-roboto  ">
             <span className="">{author}</span>
-            <span>{formatData(date)}</span>
+            <span>{formatDate(date)}</span>
           </div>
         </div>
       </a>

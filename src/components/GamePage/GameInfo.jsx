@@ -1,4 +1,6 @@
 import React from "react";
+import { formatDate } from '../../utils/javascript'
+
 
 function GameInfo({ gameData }) {
 
@@ -15,7 +17,7 @@ function GameInfo({ gameData }) {
                 Release date:
               </td>
               <td className="px-4 py-3 text-lightColdBlue-200 font-medium">
-                {`${gameData.released}`}
+                {formatDate(gameData.released)}
               </td>
             </tr>
             {gameData.publishers && (
