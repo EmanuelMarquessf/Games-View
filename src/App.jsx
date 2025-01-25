@@ -8,7 +8,7 @@ import GamePage from "./pages/GamePage";
 import NewsPage from "./pages/NewsPage";
 import Footer from "./components/Footer";
 
-import { fetchDataSearch } from "./services/rawg.service";
+import { fetchDataBase } from "./services/rawg.service";
 
 import Search from "./components/Search";
 import Header from "./components/Header";
@@ -26,7 +26,7 @@ function App() {
     setSearchInput(inputValue);
 
     async function fetch() {
-      const data = await fetchDataSearch(inputValue);
+      const data = await fetchDataBase('search', inputValue);
       setSearchData(data.results);
     }
 

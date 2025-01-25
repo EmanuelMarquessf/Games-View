@@ -1,10 +1,4 @@
 import { useEffect, useState } from "react";
-import {
-  fetchDataPopular,
-  fetchData30Day,
-  fetchNextReleases,
-} from "../services/rawg.service";
-
 import { fetchDataBase } from "../services/rawg.service"
 import { fetchDataNews } from "../services/news.service.js";
 import Head from "../components/Head";
