@@ -36,7 +36,7 @@ function NewsMainSection({ newsData, error, children }) {
           view more
         </NavLink>
       </div>
-      <div className="grid md:grid-rows-5 grid-flow-row lg:grid-rows-2   lg:grid-flow-col gap-8 md:aspect-[16/12] lg:aspect-[16/7] font-roboto ">
+      <div className="grid gap-8 md:grid-rows-5  grid-flow-row lg:grid-rows-2   lg:grid-flow-col  md:aspect-[16/12] lg:aspect-[16/7] font-roboto ">
         {newsData?.slice(0, 4).map((news, index) => (
           <NewsCard
             key={index}

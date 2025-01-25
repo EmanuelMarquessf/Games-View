@@ -20,7 +20,7 @@ function NewsCard({ index, title, description, link, image, author, date }) {
 
   if(title){
     return (
-      <a className={`flex flex-col justify-end bg-cover bg-center rounded-xl opacity-75 hover:scale-105 hover:opacity-100 transition-all duration-300 ease-in-out aspect-[16/12] md:aspect-auto ${gridConfig(index)} `} href={link} target="_blank" style={{ backgroundImage: `url(${image})` }}>
+      <a className={`flex flex-col justify-end bg-cover bg-center rounded-xl opacity-75 hover:scale-105 hover:opacity-100 transition-all duration-300 ease-in-out aspect-[16/12] md:aspect-[12/8] ${gridConfig(index)} `} href={link} target="_blank" style={{ backgroundImage: `url(${image})` }}>
         
         <div className="flex flex-col gap-2 justify-center w-full rounded-b-lg px-4 py-2 bg-darkColdBlue-500 opacity-95">
           <h1
