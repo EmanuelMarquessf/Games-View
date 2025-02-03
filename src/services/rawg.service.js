@@ -10,7 +10,7 @@ function baseFetch(fetchType, info) {
       url = `${baseUrl}games?key=${apiKey}&ordering=-rating&metacritic=80,100&exclude_additions=true`;
       break;
     case 'date30':
-      url = `${baseUrl}games?key=${apiKey}&dates=${calcData(today)},${today.toLocaleDateString("en-CA")}&ordering=-rating`;
+      url = `${baseUrl}games?key=${apiKey}&dates=${calcData(today)},${today.toLocaleDateString("en-CA")}&ordering=-released,rating`;
       break;
     case 'releases':
       url = `${baseUrl}games?key=${apiKey}&dates=${today.toLocaleDateString("en-CA")},${calcDataReleases(today.toLocaleDateString("en-CA"))}`;

@@ -8,8 +8,8 @@ function NewsPage() {
   const [error, setError] = useState(false);
 
   async function fetchNewsData() {
-    setLoading(true); // Inicia o carregamento
-    setError(false); // Reseta o erro ao iniciar a requisição
+    setLoading(true);
+    setError(false);
 
     try {
       const data = await fetchDataNews(9);
@@ -38,7 +38,7 @@ function NewsPage() {
     );
   }
 
-  if (error) {
+  if (error.includes('news')) {
     return (
       <div className="flex flex-col items-center justify-center h-screen gap-4">
         <h1 className="text-darkColdBlue-60 text-2xl font-semibold">
@@ -55,7 +55,7 @@ function NewsPage() {
         </button>
       </div>
     );
-  }
+  } else
   return (
     <div className="flex flex-col gap-8">
       <h1 className="text-darkColdBlue-60 font-poppins text-3xl font-semibold capitalize">

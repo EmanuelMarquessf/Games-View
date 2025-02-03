@@ -15,13 +15,12 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-
-
   async function fetchAllData() {
     setLoading(true);
-    setError("");
-  
     try {
+      if(error.includes('games')){
+        setError('')
+      }
       const [popular, released, nextReleases] = await Promise.all([
         fetchDataBase("popular", []),
         fetchDataBase("date30", []),
@@ -33,7 +32,7 @@ function Home() {
       setNextReleasesGamesData(nextReleases?.results);
 
     } catch (err) {
-      setError("Erro ao carregar os dados. Tente novamente.");
+      setError(`games: ${err}`);
       console.error(err);
     } finally {
       setLoading(false);
@@ -42,13 +41,16 @@ function Home() {
 
   async function fetchNewsData() {
     try {
+      if(error.includes('news')){
+        setError('')
+      }
       const data = await fetchDataNews(4);
       if (data.results) {
         setNewsData(data.results);
       }
     } catch (error) {
       console.error("Erro ao buscar os dados das noticias:", error);
-      setError(error);
+      setError(`news: ${error}`);
     }
   }
 
@@ -86,14 +88,16 @@ function Home() {
           filter="releases"
           quant={4}
           gamesData={nextReleasesGamesData}
-          releases={true}         
+          releases={true}
+          error={error}         
         />
         <GameSection
           title="Released Games"
           filter="released"
           quant={4}
           gamesData={releasedGamesData}
-          releases={true}          
+          releases={true}
+          error={error}          
         />
         <GameSection
           title="Popular Games"
@@ -101,7 +105,7 @@ function Home() {
           quant={4}
           gamesData={popularGamesData}
           releases={false}
-          
+          error={error}
         />
       </div>
     </>
