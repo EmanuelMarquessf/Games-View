@@ -10,7 +10,7 @@ function GamesByTag() {
   const [gamesData, setGamesData] = useState([])
 
   async function fetchData() {
-    const data = await fetchDataBase("tag", {tagId})
+    const data = await fetchDataBase("byTag", {tagId})
     setGamesData(data.results)
   }
 

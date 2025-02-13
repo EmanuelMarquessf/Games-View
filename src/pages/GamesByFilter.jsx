@@ -40,7 +40,7 @@ function GamesByFilter() {
       setTitle(`${filter} Games`)
       data = await fetchDataBase('byGenre', filter);
     }
-    else if(filterType[0] == 'tag'){
+    else if(filterType[0] == 'byTag'){
       filter = params.tag
       setTitle(`${filter} Games`)
       data = await fetchDataBase("byTag", filter);

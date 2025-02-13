@@ -6,7 +6,7 @@ function GenrePage() {
   const [genresData, setGenresData] = useState([]);
 
   async function fetchData() {
-    const data = await fetchDataBase("tag", '');
+    const data = await fetchDataBase("genres", '');
     setGenresData(data.results);
   }
 
